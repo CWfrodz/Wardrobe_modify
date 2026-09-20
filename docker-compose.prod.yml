@@ -51,6 +51,7 @@ services:
       REDIS_URL: redis://redis:6379
       STORAGE_PATH: /data/uploads
       AI_BASE_URL: ${AI_BASE_URL:-http://host.docker.internal:4141/v1}
+      AI_API_KEY: ${AI_API_KEY:-}
       AI_VISION_MODEL: ${AI_VISION_MODEL:-gpt-4o}
       AI_TEXT_MODEL: ${AI_TEXT_MODEL:-gpt-4o}
       AI_TIMEOUT: ${AI_TIMEOUT:-120}
@@ -109,6 +110,7 @@ services:
       REDIS_URL: redis://redis:6379
       STORAGE_PATH: /data/uploads
       AI_BASE_URL: ${AI_BASE_URL:-http://host.docker.internal:4141/v1}
+      AI_API_KEY: ${AI_API_KEY:-}
       AI_VISION_MODEL: ${AI_VISION_MODEL:-gpt-4o}
       AI_TEXT_MODEL: ${AI_TEXT_MODEL:-gpt-4o}
       AI_TIMEOUT: ${AI_TIMEOUT:-120}
