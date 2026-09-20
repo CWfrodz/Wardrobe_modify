@@ -23,6 +23,7 @@ import { mergeBulkUploadResponses, type BulkUploadResponse } from '@/lib/hooks/u
 // shrinks the retry/close-window blast radius regardless.
 const BULK_UPLOAD_CHUNK_SIZE = 8;
 const BULK_UPLOAD_MAX_BYTES = 15 * 1024 * 1024;
+const BULK_UPLOAD_TIMEOUT_MS = 180_000;
 const MAX_ATTEMPTS = 5;
 const RETRY_BACKOFF_BASE_MS = 5000;
 const BULK_LIMIT_ERROR = /^Maximum (\d+) images per bulk upload$/;
@@ -121,6 +122,9 @@ async function uploadChunk(chunk: QueuedUpload[]): Promise<BulkUploadResponse> {
     body: formData,
     credentials: 'include',
     headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+    // A stalled proxy or connection must return control to the durable queue.
+    // Retrying is safe because each file carries its stable upload key.
+    signal: AbortSignal.timeout(BULK_UPLOAD_TIMEOUT_MS),
   });
 
   if (!response.ok) {

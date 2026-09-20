@@ -36,6 +36,27 @@ beforeEach(() => {
 })
 
 describe('startDrain', () => {
+  it('releases a stalled upload for retry when the request times out', async () => {
+    await enqueueFiles([makeFile('a.jpg')], false)
+    const controller = new AbortController()
+    const timeoutSpy = vi.spyOn(AbortSignal, 'timeout').mockReturnValue(controller.signal)
+    vi.mocked(fetch).mockImplementationOnce((_url, init) => new Promise((_resolve, reject) => {
+      init?.signal?.addEventListener('abort', () => reject(new Error('Upload timed out')))
+    }))
+
+    const draining = manager.startDrain()
+    for (let i = 0; i < 10 && vi.mocked(fetch).mock.calls.length === 0; i++) {
+      await new Promise((resolve) => setTimeout(resolve, 0))
+    }
+    expect(timeoutSpy).toHaveBeenCalledWith(180_000)
+    controller.abort()
+    await draining
+
+    expect((await getPendingUploads())[0]?.status).toBe('pending')
+    expect((await manager.getState()).draining).toBe(false)
+    vi.mocked(fetch).mockClear()
+  })
+
   it('uploads staged records and removes them from the queue on success', async () => {
     await enqueueFiles([makeFile('a.jpg')], false)
     vi.mocked(fetch).mockResolvedValueOnce(
