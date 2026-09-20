@@ -656,3 +656,34 @@ class TestReasoningEffort:
                 await service.generate_text("suggest an outfit")
 
         assert mock_post.call_count == 1
+
+
+class TestAIServiceHeaders:
+    """Tests for AIService headers and API key handling."""
+
+    def test_headers_without_api_key(self):
+        with patch("app.services.ai_service.get_settings") as mock_settings:
+            mock_settings.return_value.ai_enabled = True
+            mock_settings.return_value.ai_timeout = 120
+            mock_settings.return_value.ai_api_key = None
+            mock_settings.return_value.ai_base_url = "http://localhost:11434/v1"
+            mock_settings.return_value.ai_vision_model = "llava"
+            mock_settings.return_value.ai_text_model = "gemma"
+            service = AIService()
+            headers = service._get_headers()
+            assert headers == {"Content-Type": "application/json"}
+            assert "Authorization" not in headers
+
+    def test_headers_with_api_key(self):
+        with patch("app.services.ai_service.get_settings") as mock_settings:
+            mock_settings.return_value.ai_enabled = True
+            mock_settings.return_value.ai_timeout = 120
+            mock_settings.return_value.ai_api_key = "test-openrouter-key"
+            mock_settings.return_value.ai_base_url = "https://openrouter.ai/api/v1"
+            mock_settings.return_value.ai_vision_model = "inclusionai/ling-3.0-flash-vl:free"
+            mock_settings.return_value.ai_text_model = "inclusionai/ling-3.0-flash-vl:free"
+            service = AIService()
+            headers = service._get_headers()
+            assert headers["Authorization"] == "Bearer test-openrouter-key"
+            assert headers["Content-Type"] == "application/json"
+
