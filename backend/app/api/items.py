@@ -328,6 +328,7 @@ async def bulk_create_items(
         for idx, upload_file in enumerate(images):
             filename = upload_file.filename or "unknown.jpg"
             upload_key = upload_keys[idx] if upload_keys is not None else None
+            _item_t0 = __import__("time").monotonic()
 
             try:
                 # Fast path: this exact queued upload already succeeded (a retried
@@ -421,6 +422,12 @@ async def bulk_create_items(
                     except Exception as e:
                         logger.error(f"Failed to queue AI tagging for {item.id}: {e}")
 
+                logger.debug(
+                    "bulk_upload: file %d/%d accepted in %.2fs",
+                    idx + 1,
+                    len(images),
+                    __import__("time").monotonic() - _item_t0,
+                )
                 results.append(
                     BulkUploadResult(
                         filename=filename,

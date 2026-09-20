@@ -1,4 +1,7 @@
+import asyncio
+import logging
 import shutil
+import time
 import uuid
 from datetime import datetime
 from io import BytesIO
@@ -9,6 +12,8 @@ from PIL import Image, ImageOps
 
 from app.config import get_settings
 from app.services import background_removal
+
+logger = logging.getLogger(__name__)
 
 settings = get_settings()
 
@@ -116,6 +121,64 @@ class ImageService:
         image.save(output, format="JPEG", quality=quality, optimize=True)
         return output.getvalue()
 
+    def _process_and_store_sync(
+        self,
+        user_id: uuid.UUID,
+        image_data: bytes,
+        original_filename: str,
+    ) -> dict[str, str]:
+        """CPU/IO-heavy inner work for process_and_store; runs in a thread."""
+        ext = Path(original_filename).suffix.lower()
+
+        t0 = time.monotonic()
+        image = self._open_bounded(image_data, ext)
+        image = ImageOps.exif_transpose(image)
+        t_decode = time.monotonic() - t0
+
+        base_filename = self._generate_filename(".jpg")
+        base_name = base_filename.rsplit(".", 1)[0]
+        user_path = self._get_user_path(user_id)
+        paths: dict[str, str] = {}
+
+        t1 = time.monotonic()
+        for size_name, max_size in SIZES.items():
+            if size_name == "original":
+                suffix = ""
+                quality = 95
+            elif size_name == "medium":
+                suffix = "_medium"
+                quality = 90
+            else:
+                suffix = "_thumb"
+                quality = 88
+
+            filename = f"{base_name}{suffix}.jpg"
+            file_path = user_path / filename
+            resized_data = self._resize_image(image.copy(), max_size, quality=quality)
+            file_path.write_bytes(resized_data)
+            paths[size_name] = f"{user_id}/{filename}"
+
+        t_resize = time.monotonic() - t1
+
+        t2 = time.monotonic()
+        image_hash = self._phash_of(image)
+        t_hash = time.monotonic() - t2
+
+        logger.debug(
+            "image_process_and_store: decode=%.2fs resize=%.2fs hash=%.2fs total=%.2fs",
+            t_decode,
+            t_resize,
+            t_hash,
+            time.monotonic() - t0,
+        )
+
+        return {
+            "image_path": paths["original"],
+            "medium_path": paths["medium"],
+            "thumbnail_path": paths["thumbnail"],
+            "image_hash": image_hash,
+        }
+
     async def process_and_store(
         self,
         user_id: uuid.UUID,
@@ -125,6 +188,12 @@ class ImageService:
         """
         Process an uploaded image and store all sizes.
 
+        The CPU-heavy work (PIL decode, resize, phash, file writes) is offloaded
+        to a thread pool via asyncio.to_thread so the event loop is never blocked
+        during bulk uploads — other in-flight coroutines (DB commits, Redis
+        enqueues for already-completed photos) can make progress while each photo
+        is being resized.
+
         Returns dict with paths for each size:
         {
             "original": "user_id/20240116_123456_abc123.jpg",
@@ -132,55 +201,14 @@ class ImageService:
             "thumbnail": "user_id/20240116_123456_abc123_thumb.jpg",
         }
         """
-        # Validate file extension
+        # Validate file extension before handing off to thread (fast, sync)
         ext = Path(original_filename).suffix.lower()
         if ext not in ALLOWED_EXTENSIONS:
             raise ValueError(f"Unsupported file type: {ext}")
 
-        image = self._open_bounded(image_data, ext)
-
-        # iPhones (and some Android cameras) store a raw sensor image plus an EXIF
-        # orientation tag instead of rotating pixels, so portrait photos must be
-        # transposed here or they end up sideways in storage and in AI tagging.
-        image = ImageOps.exif_transpose(image)
-
-        base_filename = self._generate_filename(".jpg")
-        base_name = base_filename.rsplit(".", 1)[0]
-
-        user_path = self._get_user_path(user_id)
-        paths = {}
-
-        # Process and save each size
-        for size_name, max_size in SIZES.items():
-            if size_name == "original":
-                suffix = ""
-                quality = 95  # Highest quality for original
-            elif size_name == "medium":
-                suffix = "_medium"
-                quality = 90
-            else:
-                suffix = "_thumb"
-                quality = 88  # Good quality for thumbnails
-
-            filename = f"{base_name}{suffix}.jpg"
-            file_path = user_path / filename
-
-            # For original, preserve as much quality as possible
-            # For others, resize with appropriate quality
-            resized_data = self._resize_image(image.copy(), max_size, quality=quality)
-            file_path.write_bytes(resized_data)
-
-            # Store relative path
-            paths[size_name] = f"{user_id}/{filename}"
-
-        image_hash = self._phash_of(image)
-
-        return {
-            "image_path": paths["original"],
-            "medium_path": paths["medium"],
-            "thumbnail_path": paths["thumbnail"],
-            "image_hash": image_hash,
-        }
+        return await asyncio.to_thread(
+            self._process_and_store_sync, user_id, image_data, original_filename
+        )
 
     def get_image_path(self, relative_path: str) -> Path:
         """Get full path for an image."""
