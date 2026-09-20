@@ -5,6 +5,187 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.11.0](https://github.com/CWfrodz/Wardrobe_modify/compare/wardrowbe-v1.10.0...wardrowbe-v1.11.0) (2026-09-20)
+
+
+### ✨ Features
+
+* add custom User-Agent header to JWKS client ([#134](https://github.com/CWfrodz/Wardrobe_modify/issues/134)) ([c18fa75](https://github.com/CWfrodz/Wardrobe_modify/commit/c18fa75a8fa70342466b7c84bf8cefbd0e4a51a7))
+* add mobile callback [#58](https://github.com/CWfrodz/Wardrobe_modify/issues/58) ([44cf285](https://github.com/CWfrodz/Wardrobe_modify/commit/44cf285d3d612d1e1e97d1af110c284b716cb398))
+* add next-intl internationalization with 4 locales ([be2668f](https://github.com/CWfrodz/Wardrobe_modify/commit/be2668f9b326ddfaaa45ecb2aad9195fd74b4bc5))
+* add next-intl internationalization with 4 locales (en/zh/fr/it) ([77d5f6b](https://github.com/CWfrodz/Wardrobe_modify/commit/77d5f6b0e9f4525b02004361a36b019950283ea8))
+* add page-size control and scope select-all to current page ([#127](https://github.com/CWfrodz/Wardrobe_modify/issues/127)) ([7430a4f](https://github.com/CWfrodz/Wardrobe_modify/commit/7430a4f910a65d6db810a5381f362e91f902694f))
+* allow bulk upload without forced AI analysis ([#128](https://github.com/CWfrodz/Wardrobe_modify/issues/128)) ([7984e26](https://github.com/CWfrodz/Wardrobe_modify/commit/7984e26f4fa233a1a40d95805e74e6444ffa2bc6))
+* allow cancelling AI analysis on processing items ([#95](https://github.com/CWfrodz/Wardrobe_modify/issues/95)) ([05f3578](https://github.com/CWfrodz/Wardrobe_modify/commit/05f357808d55a74de1394b5ec36cf5472370ba21))
+* **api:** advertise external_tagging in /capabilities ([9f0d5ea](https://github.com/CWfrodz/Wardrobe_modify/commit/9f0d5ea21f04872482265a5c201e0176a89d8f23))
+* **backend:** persist user locale ([a1878d3](https://github.com/CWfrodz/Wardrobe_modify/commit/a1878d3bb07258ca1285dc1334d5c082d49e120b))
+* blend outfit scoring across the day's temperature range ([dd1b8f8](https://github.com/CWfrodz/Wardrobe_modify/commit/dd1b8f8e5ad4ead2472e114cc4fdb303ec31b426))
+* bulk-cancel in-progress AI analysis ([#152](https://github.com/CWfrodz/Wardrobe_modify/issues/152)) ([26f2cad](https://github.com/CWfrodz/Wardrobe_modify/commit/26f2cadaf861092e750c850df0b6d529eda3eb96))
+* **ci:** add /reopen command for closed issues ([0f7046b](https://github.com/CWfrodz/Wardrobe_modify/commit/0f7046b01aae0bf0e0fffeb96cb4b3ad492907a6))
+* defer item tagging to an external agent (phase 2) ([c63ced9](https://github.com/CWfrodz/Wardrobe_modify/commit/c63ced9caf4d4241fe53f7b164a886e45979547c))
+* external outfit authoring for suggestions and pairings ([#156](https://github.com/CWfrodz/Wardrobe_modify/issues/156)) ([1d3506a](https://github.com/CWfrodz/Wardrobe_modify/commit/1d3506a7bbab293e87043b6bfd9f996d7d1dffd6))
+* **i18n:** restructure keys onto feature namespaces and ship 8 locales ([eaf47b3](https://github.com/CWfrodz/Wardrobe_modify/commit/eaf47b3dffb64fa430f2ead21ed1d2f7f7c3850e))
+* **items:** add ai_failed_at column and retry cooldown config ([ebe8409](https://github.com/CWfrodz/Wardrobe_modify/commit/ebe8409a31ecdd5249c2e6b3461c2fdb23e0409b))
+* **items:** add tagging lifecycle fields and migration ([d49bb65](https://github.com/CWfrodz/Wardrobe_modify/commit/d49bb6506d37a77182e6c40479c3564cb5afc6b1))
+* **items:** add upload_key idempotency for bulk upload retries ([1d9d832](https://github.com/CWfrodz/Wardrobe_modify/commit/1d9d832dd41f7af1c34acf34957e2680fb83c4f7))
+* **items:** defer tagging to an external agent and expose a write surface ([059e1ab](https://github.com/CWfrodz/Wardrobe_modify/commit/059e1ab509b93a5490ec4d12a92155dbdcc64776))
+* make internal AI optional and add capabilities endpoint ([#113](https://github.com/CWfrodz/Wardrobe_modify/issues/113)) ([376f9a6](https://github.com/CWfrodz/Wardrobe_modify/commit/376f9a6a1e846d3de7853f55ac76447f204c8529))
+* **outfits:** add bulk-delete endpoint ([0db1be2](https://github.com/CWfrodz/Wardrobe_modify/commit/0db1be23417cad87d28fa498bac9d5bf409c41ff))
+* **outfits:** add bulk-select/delete to outfits page, rename lookbook filter chip ([ea9f2c6](https://github.com/CWfrodz/Wardrobe_modify/commit/ea9f2c69decadb5f6e16f7e27ac1989bfbfe21e8))
+* **release:** notify reporters when a fix ships ([c4aeacf](https://github.com/CWfrodz/Wardrobe_modify/commit/c4aeacf6c9afeac88baad2036ceb62648fa68a8f))
+* **suggest:** add base item selection and 3-look comparison view ([#194](https://github.com/CWfrodz/Wardrobe_modify/issues/194)) ([6062793](https://github.com/CWfrodz/Wardrobe_modify/commit/6062793f9f862432f125548a9aa6d04f29f89f58))
+* support PUID/PGID overrides on app containers ([#123](https://github.com/CWfrodz/Wardrobe_modify/issues/123)) ([14674cb](https://github.com/CWfrodz/Wardrobe_modify/commit/14674cbbfd79e371b08d9761f02542aafe040cc3))
+* undo background removal and replace primary image ([#126](https://github.com/CWfrodz/Wardrobe_modify/issues/126)) ([c1c10b2](https://github.com/CWfrodz/Wardrobe_modify/commit/c1c10b2803b90104d5323ef112e66f786af75baa))
+* **wardrobe:** add bulk rotate and background removal actions ([6ed27bc](https://github.com/CWfrodz/Wardrobe_modify/commit/6ed27bcb51676837ff51b0d0d2398515a6586033))
+* **wardrobe:** add durable upload queue and drain manager ([0d0ba29](https://github.com/CWfrodz/Wardrobe_modify/commit/0d0ba293f4fd6187bd0973e541262eb1b8ac3cc4))
+* **wardrobe:** show queued vs analyzing status with elapsed time ([9da07d0](https://github.com/CWfrodz/Wardrobe_modify/commit/9da07d06bea8c3caae2689692feb1cee04dc35c4))
+* **wardrobe:** surface retry-cooldown status to the user ([a2848f4](https://github.com/CWfrodz/Wardrobe_modify/commit/a2848f46fbc305bd26d6956dadfb7ab1eed7fff2))
+* **wardrobe:** wire durable upload queue into bulk-upload UI ([64ca39e](https://github.com/CWfrodz/Wardrobe_modify/commit/64ca39eae10db9dc452bfc72f23cc7fe2f6816b3))
+* **worker:** make AI tagging concurrency configurable ([adafab9](https://github.com/CWfrodz/Wardrobe_modify/commit/adafab9f37caa12092e786dae36d43d2fcd5018b))
+
+
+### 🐛 Bug Fixes
+
+* [#124](https://github.com/CWfrodz/Wardrobe_modify/issues/124) fix prod compose file well ([3cded21](https://github.com/CWfrodz/Wardrobe_modify/commit/3cded21db36b877ef2a0a90815a620be2cc4bdf5))
+* 39: Add proper error messages for diagnose ([#40](https://github.com/CWfrodz/Wardrobe_modify/issues/40)) ([f4a71d1](https://github.com/CWfrodz/Wardrobe_modify/commit/f4a71d15eba68519f59ff571cca0a111d59cc0c7))
+* Add current user check ([84840ab](https://github.com/CWfrodz/Wardrobe_modify/commit/84840ab8da7727b24f127fa8d8ac18a57fbcbb51))
+* Add missing test:coverage script to package.json ([43b8dfa](https://github.com/CWfrodz/Wardrobe_modify/commit/43b8dfa6a254c4af67e95b1bb3fefee2eac9d0e4))
+* add missing URL fields to TypeScript interfaces ([6113dd6](https://github.com/CWfrodz/Wardrobe_modify/commit/6113dd6682227d82dc29251ed9a4fc9054047ad6))
+* add weather location fallbacks ([#75](https://github.com/CWfrodz/Wardrobe_modify/issues/75)) ([7426d6d](https://github.com/CWfrodz/Wardrobe_modify/commit/7426d6d8444769dd34263373ebf551ecaaf79b59))
+* address copilot review issues in i18n implementation ([a8871ee](https://github.com/CWfrodz/Wardrobe_modify/commit/a8871ee33f3d96ed940f75d067e8b852bced12eb))
+* **ai:** bypass reasoning mode by default to prevent timeouts on thinking models ([129ef25](https://github.com/CWfrodz/Wardrobe_modify/commit/129ef256c9715efcfa4e56c3770b4f2bbb82f047))
+* **ai:** bypass reasoning mode by default to prevent timeouts on thinking models ([ea8966e](https://github.com/CWfrodz/Wardrobe_modify/commit/ea8966e0caa86c2189e0667a0ede6355918cec5b))
+* **ai:** classify 200 error envelopes by message before stripping params ([752dcdf](https://github.com/CWfrodz/Wardrobe_modify/commit/752dcdf159c4680df444f9cde51b840a69bd19e1))
+* **ai:** handle AI error envelopes returned with HTTP 200 ([e3e5a95](https://github.com/CWfrodz/Wardrobe_modify/commit/e3e5a950541aa31b4885c51bdb8f22565a69a808))
+* **ai:** handle error envelopes in text generation ([9da5d95](https://github.com/CWfrodz/Wardrobe_modify/commit/9da5d95a0eae27baf080c05ce2117288dcd30b5e))
+* **ai:** stop image preprocessing from blocking the event loop ([b6ad642](https://github.com/CWfrodz/Wardrobe_modify/commit/b6ad6420110962651653a3fe75d3d64d27047313))
+* align .env.example SECRET_KEY with dev-mode sentinel ([a8f9f5e](https://github.com/CWfrodz/Wardrobe_modify/commit/a8f9f5e5a8c66da81084e49b18fa8c47f82e11ef)), closes [#72](https://github.com/CWfrodz/Wardrobe_modify/issues/72)
+* allow overriding backend URL for renamed compose services ([#124](https://github.com/CWfrodz/Wardrobe_modify/issues/124)) ([2a813d6](https://github.com/CWfrodz/Wardrobe_modify/commit/2a813d60d711aa31c45ae7c024f1389b345be170))
+* bound AI request concurrency and fix upload queue stall ([#152](https://github.com/CWfrodz/Wardrobe_modify/issues/152), [#154](https://github.com/CWfrodz/Wardrobe_modify/issues/154) reopened) ([bb441b6](https://github.com/CWfrodz/Wardrobe_modify/commit/bb441b63eedb61fea2a46601eefc8a6092ed8a55))
+* bound AI request concurrency and fix upload queue stall ([#152](https://github.com/CWfrodz/Wardrobe_modify/issues/152), [#154](https://github.com/CWfrodz/Wardrobe_modify/issues/154) reopened) ([7a7e0c6](https://github.com/CWfrodz/Wardrobe_modify/commit/7a7e0c6ae46ae3f4f953cb107844427c00685d95))
+* chunk bulk uploads so batches over the limit no longer fail ([#125](https://github.com/CWfrodz/Wardrobe_modify/issues/125)) ([a4df578](https://github.com/CWfrodz/Wardrobe_modify/commit/a4df578b187b0343eff5091c49b7e02b76ec0546))
+* **ci:** Fix backend storage path and update Node.js to 20 ([55cda11](https://github.com/CWfrodz/Wardrobe_modify/commit/55cda11c76e03a490d3faa6981f50016bb1ebfde))
+* **ci:** Fix first time pr ([70ce6f9](https://github.com/CWfrodz/Wardrobe_modify/commit/70ce6f9d49b36fe1d9b7b91a8b86cb3513483968))
+* enable dev credential login in Docker production builds ([#43](https://github.com/CWfrodz/Wardrobe_modify/issues/43)) ([9aab711](https://github.com/CWfrodz/Wardrobe_modify/commit/9aab71185d82a1a789a104abdbb842511285e001))
+* Ensure opensource repo works for new users ([a003dbd](https://github.com/CWfrodz/Wardrobe_modify/commit/a003dbd1c65c8917148b00ac007b466fb6e3430a))
+* **frontend:** restore missing [@emnapi](https://github.com/emnapi) entries in package-lock.json ([58740db](https://github.com/CWfrodz/Wardrobe_modify/commit/58740db6f33b4ecbdd074a552205d3110625454b))
+* **frontend:** sync package-lock.json with package.json ([8ce97d0](https://github.com/CWfrodz/Wardrobe_modify/commit/8ce97d0d47e6f9803fbe3b83c75b7700899ecd6f))
+* handle AI error envelopes returned with HTTP 200 ([#201](https://github.com/CWfrodz/Wardrobe_modify/issues/201)) ([2804524](https://github.com/CWfrodz/Wardrobe_modify/commit/28045246da067fe185d728045adc46c74fd43e15))
+* **i18n:** translate defaultOccasion label in 6 locales ([6c92599](https://github.com/CWfrodz/Wardrobe_modify/commit/6c9259975146e9ec6be616b36583995d9f35c1cf))
+* **images:** honor EXIF orientation on upload ([#172](https://github.com/CWfrodz/Wardrobe_modify/issues/172)) ([68d730a](https://github.com/CWfrodz/Wardrobe_modify/commit/68d730a8d2ee846b65190a1898bb7927ec6b2c56))
+* Item pair score initialization for learning service ([9f7de07](https://github.com/CWfrodz/Wardrobe_modify/commit/9f7de07deb7216c55c2a091b481fc98be71d4ad2))
+* **items:** gate manual and bulk retry behind a cooldown after failure ([9338289](https://github.com/CWfrodz/Wardrobe_modify/commit/9338289a0a769ea2374d7127239700528c2e6d15))
+* **items:** idempotent re-analysis and real queue visibility ([9c8cbfd](https://github.com/CWfrodz/Wardrobe_modify/commit/9c8cbfdd657479f1ad7dff3a035b8a77153e0ac6))
+* keep honoring NEXT_PUBLIC_API_URL when resolving the backend ([#124](https://github.com/CWfrodz/Wardrobe_modify/issues/124)) ([d8cca73](https://github.com/CWfrodz/Wardrobe_modify/commit/d8cca73dd5c20315e2d7d256b112663b84894c11))
+* make OIDC issuer URL trailing-slash agnostic ([#107](https://github.com/CWfrodz/Wardrobe_modify/issues/107)) ([152f175](https://github.com/CWfrodz/Wardrobe_modify/commit/152f17572488bb63bc5f65a0c1a3240752db12c1))
+* modernize Python type annotations for Ruff linting ([208920b](https://github.com/CWfrodz/Wardrobe_modify/commit/208920bb1f60318100584fc12a1732154570461b))
+* OIDC issue [#114](https://github.com/CWfrodz/Wardrobe_modify/issues/114) ([7354232](https://github.com/CWfrodz/Wardrobe_modify/commit/73542322e0d56913d5e3f249f4679c05efd0eb74))
+* **outfits:** relabel Reject to Dismiss ([c54fd57](https://github.com/CWfrodz/Wardrobe_modify/commit/c54fd57e6713a48cf5a6d944c61a96fafdd9bf25))
+* prevent same-slot item pairing, add socks/tie types, fix UI text… ([#55](https://github.com/CWfrodz/Wardrobe_modify/issues/55)) ([c457572](https://github.com/CWfrodz/Wardrobe_modify/commit/c4575720d706d30a432900693983b0a3b38fb1a8))
+* proxy /api/v1 through a route handler so BACKEND_URL applies ([#124](https://github.com/CWfrodz/Wardrobe_modify/issues/124)) ([2fff9c3](https://github.com/CWfrodz/Wardrobe_modify/commit/2fff9c399e0feae14266c36a1afb5ff46c437207))
+* re-fetch items after update/archive/restore to load relationships ([edfa65c](https://github.com/CWfrodz/Wardrobe_modify/commit/edfa65ce5d9516f61b6094554886f7aec0d452f2))
+* **recommendation:** support all-season items and weather-aware season scoring ([fd56d47](https://github.com/CWfrodz/Wardrobe_modify/commit/fd56d4798686d8d09d5ead1191cc14aea5ffb87e))
+* **recommendation:** support all-season items and weather-aware season scoring ([bd08b13](https://github.com/CWfrodz/Wardrobe_modify/commit/bd08b13a657012af4d4ebdd5c1e98c4c58fab122))
+* refetch outfit after commit ([f9b3ceb](https://github.com/CWfrodz/Wardrobe_modify/commit/f9b3ceba0eab745682168151cee3adc112641afc))
+* regenerate frontend lockfile for musl/alpine platform ([961b09f](https://github.com/CWfrodz/Wardrobe_modify/commit/961b09ff59d819d859d9068b9b72e43144b6d711))
+* Resolve all CI quality check failures ([2209cdf](https://github.com/CWfrodz/Wardrobe_modify/commit/2209cdf66ff86090b95e583a6d587be429c2b357))
+* resolve CI lint/type/test failures from v1.2.0 release ([3568174](https://github.com/CWfrodz/Wardrobe_modify/commit/35681741610d8f696665b63ffc2ee15ad6c94fea))
+* Resolve lint and format issues ([86799df](https://github.com/CWfrodz/Wardrobe_modify/commit/86799df4e116e3ab3ee4fde4da64e9b945263dac))
+* retry AI tagging without logprobs when the provider rejects it ([2fbf38f](https://github.com/CWfrodz/Wardrobe_modify/commit/2fbf38fe2d0f3811edef385fabe4b168ee12e84e))
+* retry AI tagging without logprobs when the provider rejects it ([b39815d](https://github.com/CWfrodz/Wardrobe_modify/commit/b39815d52c666be445b6feb52d7f1f51abedefa3))
+* select wardrobe items beyond the first page in studio ([c73c571](https://github.com/CWfrodz/Wardrobe_modify/commit/c73c5717ff23fd849154f5e44569d854400bb600))
+* show config error on login when no auth provider is registered ([22e73ad](https://github.com/CWfrodz/Wardrobe_modify/commit/22e73ade5a9999fba2fb303a0533569d38294286))
+* surface real cause when outfit suggestion AI response is truncated ([#139](https://github.com/CWfrodz/Wardrobe_modify/issues/139)) ([#142](https://github.com/CWfrodz/Wardrobe_modify/issues/142)) ([7af8472](https://github.com/CWfrodz/Wardrobe_modify/commit/7af84720f1f6932d61fde8504edcf4b281f350fa))
+* **templates:** point issue template links at the real repo ([1b863bf](https://github.com/CWfrodz/Wardrobe_modify/commit/1b863bfb03ef9f5cd66219f35646055a57faf538))
+* Update AccumulatedItem types to match Item interface ([3e85320](https://github.com/CWfrodz/Wardrobe_modify/commit/3e853208a9b2abd99489415d77c923216825689a))
+* update cognitive cache thresh ([9170644](https://github.com/CWfrodz/Wardrobe_modify/commit/9170644a47140af7fb1e485c42af2688d9b95cde))
+* update pair context for feedback without a rating ([3764dec](https://github.com/CWfrodz/Wardrobe_modify/commit/3764dec0c6462aad253bed6ea3bf4a834b31e2b7))
+* use separate test database instead of falling back to production DB ([019d2e9](https://github.com/CWfrodz/Wardrobe_modify/commit/019d2e9b54a51c031b72281a2c4080d206a46b76))
+* use separate test database instead of falling back to production DB ([7eae5c9](https://github.com/CWfrodz/Wardrobe_modify/commit/7eae5c9882e218908ef94fe0a1d413138df1f381))
+* **users:** reject unknown fields on PATCH /users/me ([#168](https://github.com/CWfrodz/Wardrobe_modify/issues/168)) ([69bb1f6](https://github.com/CWfrodz/Wardrobe_modify/commit/69bb1f663415f126ab470bcffce7be54935d94d7))
+* **wardrobe:** split bulk upload chunks that exceed the server's configured limit ([#175](https://github.com/CWfrodz/Wardrobe_modify/issues/175)) ([ec0fb17](https://github.com/CWfrodz/Wardrobe_modify/commit/ec0fb17f9cd13a7317d5ed52f4a7a24325e7684c))
+* **wardrobe:** stuck upload queue records now durable and cancellable ([#163](https://github.com/CWfrodz/Wardrobe_modify/issues/163)) ([b89bc4f](https://github.com/CWfrodz/Wardrobe_modify/commit/b89bc4f35c19fa20731b274ba41a32784bd447f6))
+* **worker:** make the arq pool the only AI concurrency bound ([d0170b8](https://github.com/CWfrodz/Wardrobe_modify/commit/d0170b83f42c6740ef2c5bde407da556ac1a0482))
+* **worker:** stop the stale-item sweep from condemning queued items ([cc52597](https://github.com/CWfrodz/Wardrobe_modify/commit/cc52597e8431f661789477a9d480964574c52cb6))
+
+
+### ♻️ Refactoring
+
+* **items:** align single-item create with the bulk skip_ai contract ([1195693](https://github.com/CWfrodz/Wardrobe_modify/commit/11956936c601bc0dea4c080d62e3c2bf186ed4b2))
+
+
+### 📝 Documentation
+
+* improve setup instructions and fix dev mode ([3b567de](https://github.com/CWfrodz/Wardrobe_modify/commit/3b567de06f49c5fbe04bfbc04c58ccbf3d743d69))
+* replace star history with supporters list ([0ba2f77](https://github.com/CWfrodz/Wardrobe_modify/commit/0ba2f77bb1dc72ac1ee04bc55354994cdd50a2ec))
+
+
+### 🔧 Maintenance
+
+* add cognitive cache ([886e65f](https://github.com/CWfrodz/Wardrobe_modify/commit/886e65f43d5fa89365bb10f122a3066ce7b81551))
+* add git-blame-ignore-revs for formatting commits ([38fcc6f](https://github.com/CWfrodz/Wardrobe_modify/commit/38fcc6f210089bfd0e2bb7979fbfc26487974ba5))
+* Add pre-commit hooks for lint/format enforcement ([90343d3](https://github.com/CWfrodz/Wardrobe_modify/commit/90343d39fbfd413bf6bbce273d7c7d5b205ba2cc))
+* Add tsbuildinfo to gitignore ([b5280aa](https://github.com/CWfrodz/Wardrobe_modify/commit/b5280aa158a3eb9228e712444ec62fef918b094e))
+* **deps:** bump astral-sh/setup-uv from 4 to 7 ([84ceb98](https://github.com/CWfrodz/Wardrobe_modify/commit/84ceb98defc5c87b7322d4d26469d9fd65238e3f))
+* **deps:** bump googleapis/release-please-action from 4 to 5 ([8a31d2c](https://github.com/CWfrodz/Wardrobe_modify/commit/8a31d2c379805284feb4e4d746d340262791b529))
+* fix linting errors and add missing type properties ([f1c4848](https://github.com/CWfrodz/Wardrobe_modify/commit/f1c484883d766961410977de1a81837679a8630f))
+* **main:** release wardrowbe 1.10.0 ([81e7b3a](https://github.com/CWfrodz/Wardrobe_modify/commit/81e7b3a1a6b876e66715b280fb3c2259cb3eac98))
+* **main:** release wardrowbe 1.2.1 ([#16](https://github.com/CWfrodz/Wardrobe_modify/issues/16)) ([02406b6](https://github.com/CWfrodz/Wardrobe_modify/commit/02406b6c66303076df10034c49d8240a7fa675cb))
+* **main:** release wardrowbe 1.2.2 ([#44](https://github.com/CWfrodz/Wardrobe_modify/issues/44)) ([3f9db84](https://github.com/CWfrodz/Wardrobe_modify/commit/3f9db84670cc334e6179ac836fe2d067f7d88e1d))
+* **main:** release wardrowbe 1.2.3 ([#51](https://github.com/CWfrodz/Wardrobe_modify/issues/51)) ([6285682](https://github.com/CWfrodz/Wardrobe_modify/commit/6285682072c17c23c47e22fe08944bbafd50554f))
+* **main:** release wardrowbe 1.2.4 ([#53](https://github.com/CWfrodz/Wardrobe_modify/issues/53)) ([3aa9bb3](https://github.com/CWfrodz/Wardrobe_modify/commit/3aa9bb3d584d57ae184edc30ba0c479e7d773998))
+* **main:** release wardrowbe 1.3.0 ([618b7bd](https://github.com/CWfrodz/Wardrobe_modify/commit/618b7bd0eec4c482dd6431b37e51fca813468bdd))
+* **main:** release wardrowbe 1.3.1 ([#106](https://github.com/CWfrodz/Wardrobe_modify/issues/106)) ([a2fa5eb](https://github.com/CWfrodz/Wardrobe_modify/commit/a2fa5ebd2763e024f21e109574ced023cec2871f))
+* **main:** release wardrowbe 1.4.0 ([70461f7](https://github.com/CWfrodz/Wardrobe_modify/commit/70461f7397c9e3f65f87626cf75328c419357734))
+* **main:** release wardrowbe 1.5.0 ([3bac2a2](https://github.com/CWfrodz/Wardrobe_modify/commit/3bac2a268a1a1d6ff4fd09c0c5c03de09ff69b25))
+* **main:** release wardrowbe 1.5.1 ([be1711a](https://github.com/CWfrodz/Wardrobe_modify/commit/be1711aba0a571da01a5d59bf8fcef4c70b30cef))
+* **main:** release wardrowbe 1.6.0 ([65f0bc7](https://github.com/CWfrodz/Wardrobe_modify/commit/65f0bc7d9320b43e03b0add29fc4237df96932e8))
+* **main:** release wardrowbe 1.7.0 ([#150](https://github.com/CWfrodz/Wardrobe_modify/issues/150)) ([eda843f](https://github.com/CWfrodz/Wardrobe_modify/commit/eda843fd7de2a99c95774d19431def988eb58325))
+* **main:** release wardrowbe 1.8.0 ([f2c676b](https://github.com/CWfrodz/Wardrobe_modify/commit/f2c676b4b1baa7d423abb9c4b5ea19aa46f6ad52))
+* **main:** release wardrowbe 1.8.1 ([#170](https://github.com/CWfrodz/Wardrobe_modify/issues/170)) ([04980bb](https://github.com/CWfrodz/Wardrobe_modify/commit/04980bbce0ad10590c5da9a7314728d714fa0ac5))
+* **main:** release wardrowbe 1.8.2 ([f100e54](https://github.com/CWfrodz/Wardrobe_modify/commit/f100e54e353495d9b459e6b215299cc9af4e05df))
+* **main:** release wardrowbe 1.9.0 ([234a526](https://github.com/CWfrodz/Wardrobe_modify/commit/234a5268c9b8531e6792050c7d394de361c15ca2))
+* pin rembg to 2.0.81 ([d9ca598](https://github.com/CWfrodz/Wardrobe_modify/commit/d9ca5982183a446e33dd41c10be356567fbc2fc3))
+* **release:** Add example screens ([2add224](https://github.com/CWfrodz/Wardrobe_modify/commit/2add2242a1342de29777fcb4ae74068bb6c8aab1))
+
+
+### 🧪 Tests
+
+* **backend:** cover retry-cooldown claim, gating, and concurrency ([ec8778f](https://github.com/CWfrodz/Wardrobe_modify/commit/ec8778f65cdb58a482be809e8e08e03a441ed991))
+* **backend:** cover stale-sweep, concurrency, and idempotency changes ([45ea759](https://github.com/CWfrodz/Wardrobe_modify/commit/45ea759735a6021d7813785ec3370609e08c878f))
+* **items:** cover the tagging lifecycle ([c2e9bcc](https://github.com/CWfrodz/Wardrobe_modify/commit/c2e9bcc3ffe69d5ea55e109b1b86cf4bc07b2cbf))
+
+
+### 👷 CI/CD
+
+* add actionlint gate for workflow files ([3d163a1](https://github.com/CWfrodz/Wardrobe_modify/commit/3d163a1672bd76a58d1f31f4fde11d6db5d13173))
+* assign PRs to the repository owner instead of a hardcoded login ([abb2d4d](https://github.com/CWfrodz/Wardrobe_modify/commit/abb2d4dddecd76f6444089c99efafd332ff7fe22))
+* auto-assign PRs to maintainer ([0cf4b69](https://github.com/CWfrodz/Wardrobe_modify/commit/0cf4b69405d18d2172edc448ecdcf7bba8c19dbd))
+* auto-label PRs by changed path ([129ccc6](https://github.com/CWfrodz/Wardrobe_modify/commit/129ccc603451b9c63145e050d8f967d1a7e2e4c6))
+* build arm64 images natively instead of under QEMU ([4aae3a0](https://github.com/CWfrodz/Wardrobe_modify/commit/4aae3a0ff95b50797ce270b2e1af0f66fb4b118a))
+* document intentional word-splitting in docker-publish ([a7a1ea3](https://github.com/CWfrodz/Wardrobe_modify/commit/a7a1ea38811d3a953e8981cdbf59819b7bb6a0e3))
+* enforce conventional-commit PR titles ([66808c9](https://github.com/CWfrodz/Wardrobe_modify/commit/66808c99b1965de92090c7f2244b81adb0786ac0))
+* gate translation coverage ([6a87d29](https://github.com/CWfrodz/Wardrobe_modify/commit/6a87d298b9b489f62eb0373cfc939f99362615e2))
+* install cognitive-cache via uv tool install ([6ede4f2](https://github.com/CWfrodz/Wardrobe_modify/commit/6ede4f237567de29c250936f4bc05ff6b896f99e))
+* publish Docker images to GHCR on main and releases ([#83](https://github.com/CWfrodz/Wardrobe_modify/issues/83)) ([af22e84](https://github.com/CWfrodz/Wardrobe_modify/commit/af22e8410d37f04800dafa4cbc09a94e7fddd6bc))
+* publish versioned images on release ([#112](https://github.com/CWfrodz/Wardrobe_modify/issues/112)) ([9677b39](https://github.com/CWfrodz/Wardrobe_modify/commit/9677b3918728355046d3d8f306b11b9a0d61bc6e))
+* re-check PR title on synchronize ([9793a01](https://github.com/CWfrodz/Wardrobe_modify/commit/9793a01e05ec29bfb2b80a84800f8e680a470e36))
+* remove unused cognitive-cache context workflows ([1604071](https://github.com/CWfrodz/Wardrobe_modify/commit/1604071981d779d62bce4b8423b2726ea8add56f))
+* run each test suite once and drop the missing frontend coverage script ([ae9c2c9](https://github.com/CWfrodz/Wardrobe_modify/commit/ae9c2c949e0faf1256fae59af509ceba1c5ea16b))
+* welcome first-time issue and PR authors ([49be742](https://github.com/CWfrodz/Wardrobe_modify/commit/49be74277a03191d6c2e70f88aaab6b86b138fc2))
+* welcome only true first-time authors ([89c1023](https://github.com/CWfrodz/Wardrobe_modify/commit/89c1023feb0a19b5ed707ad54d993afb63ee9377))
+
+
+### 💄 Styling
+
+* ruff-format upload_key migration ([ced1ed8](https://github.com/CWfrodz/Wardrobe_modify/commit/ced1ed8eb0708c45293be97e10e4cd4bc4130d21))
+* Update README badges to for-the-badge style ([#10](https://github.com/CWfrodz/Wardrobe_modify/issues/10)) ([6eff9e9](https://github.com/CWfrodz/Wardrobe_modify/commit/6eff9e9278a424ff49e1a9b1d93b5611eb05e123))
+
+
+### 📦 Build
+
+* **deps:** bump codecov/codecov-action from 4 to 6 ([436997e](https://github.com/CWfrodz/Wardrobe_modify/commit/436997e8a4ff461a6336c442f6872da441dce1f7))
+
 ## [1.10.0](https://github.com/Anyesh/wardrowbe/compare/wardrowbe-v1.9.0...wardrowbe-v1.10.0) (2026-09-11)
 
 
